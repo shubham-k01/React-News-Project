@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import './Newsitems.js'
-import Search from './Search.js'
-// import News from './News.js'
 // import Search from './Search.js'
+// import News from './News.js'
 
 
 export default class Navbar extends Component {
@@ -46,7 +45,7 @@ export default class Navbar extends Component {
                             <input id="s1" className="form-control me-2" type="search"   placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit" onClick={this.props.search}><Link to='/search'>Search</Link></button>
                         </form> */}
-                        <Search/>
+                        {/* <Search/> */}
                     </div>
                 </div>
 
