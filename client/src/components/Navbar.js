@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import './Newsitems.js'
-import Search from './Search.js'
 // import News from './News.js'
 // import Search from './Search.js'
 
 
-export default class Navbar extends Component {
-    
-    render() {
+export default function Navbar(){
         return (
             <>
             <nav className="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" style={{width:'100w'}}>
@@ -46,12 +43,11 @@ export default class Navbar extends Component {
                             <input id="s1" className="form-control me-2" type="search"   placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit" onClick={this.props.search}><Link to='/search'>Search</Link></button>
                         </form> */}
-                        <Search/>
                     </div>
                 </div>
 
             </nav>
             </>
         )
-    }
 }
+

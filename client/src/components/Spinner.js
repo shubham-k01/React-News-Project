@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../ATB3o.gif'
 
-export default class Spinner extends Component {
-  // static propTypes = {
-  //   prop: PropTypes
-  // }
-
-  render() {
+export default function Spinner(){
+  
     return (
       <div className="text-center">
         <div className="spinner-border" role="status">
@@ -16,4 +12,3 @@ export default class Spinner extends Component {
       </div>
     )
   }
-}

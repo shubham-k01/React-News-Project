@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { Component } from 'react'
+import React from 'react'
 import './components/Navbar'
 import Navbar from './components/Navbar';
 import {
@@ -10,37 +10,27 @@ import {
 } from 'react-router-dom'
 import News from './components/News';
 
-export default class App extends Component {
+export default function App(){
 
-  apiKey = process.env.REACT_APP_API_KEY
-  pageSize = 5
+  const apiKey = process.env.REACT_APP_API_KEY
+  const pageSize = 5
 
-  search = () =>{
-    const a = document.getElementById('s1').value
-    return <News key='search' search={a} apiKey={this.apiKey}/>
-    // return <Search key='search' search={a} apiKey={this.apiKey}/>
-}
-  render() {
-    return (
+  return (
       <>
         <Router>
-          <Navbar search={this.search} />
+          <Navbar/>
           <Routes>
-            <Route exact path='/' element={<News key='gen' category='general' apiKey={this.apiKey} pageSize={this.pageSize} />} />
-            <Route exact path='/gen' element={<News key='gen' category='general' apiKey={this.apiKey} pageSize={this.pageSize} />} />
-            <Route exact path='/heal' element={<News key='heal' category='health' apiKey={this.apiKey} pageSize={this.pageSize}/>} />
-            <Route exact path='/ent' element={<News key='ent' category='entertainment' apiKey={this.apiKey} pageSize={this.pageSize}/>} />
-            <Route exact path='/sports' element={<News key='sports' category='sports' apiKey={this.apiKey} pageSize={this.pageSize}/>} />
-            <Route exact path='/business' element={<News key='business' category='business' apiKey={this.apiKey} pageSize={this.pageSize}/>} />
-            <Route exact path='/sci' element={<News key='sci' category='science' apiKey={this.apiKey} pageSize={this.pageSize}/>}  />
-            <Route exact path='/tech' element={<News key='tech' category='technology' apiKey={this.apiKey} pageSize={this.pageSize}/>} />
-            <Route exact path='/search' element={<News key='search' search='' apiKey={this.apiKey} pageSize={this.pageSize}/>}></Route> 
+            <Route exact path='/' element={<News key='gen' category='general' apiKey={apiKey} pageSize={pageSize} />} />
+            <Route exact path='/gen' element={<News key='gen' category='general' apiKey={apiKey} pageSize={pageSize} />} />
+            <Route exact path='/heal' element={<News key='heal' category='health' apiKey={apiKey} pageSize={pageSize}/>} />
+            <Route exact path='/ent' element={<News key='ent' category='entertainment' apiKey={apiKey} pageSize={pageSize}/>} />
+            <Route exact path='/sports' element={<News key='sports' category='sports' apiKey={apiKey} pageSize={pageSize}/>} />
+            <Route exact path='/business' element={<News key='business' category='business' apiKey={apiKey} pageSize={pageSize}/>} />
+            <Route exact path='/sci' element={<News key='sci' category='science' apiKey={apiKey} pageSize={pageSize}/>}  />
+            <Route exact path='/tech' element={<News key='tech' category='technology' apiKey={apiKey} pageSize={pageSize}/>} />
           </Routes>
         </Router>
         
       </>
     )
   }
-}
-
-// element={<News key='search' search='football' apiKey={this.apiKey}
