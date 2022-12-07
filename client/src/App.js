@@ -28,6 +28,7 @@ export default function App(){
             <Route exact path='/business' element={<News key='business' category='business' apiKey={apiKey} pageSize={pageSize}/>} />
             <Route exact path='/sci' element={<News key='sci' category='science' apiKey={apiKey} pageSize={pageSize}/>}  />
             <Route exact path='/tech' element={<News key='tech' category='technology' apiKey={apiKey} pageSize={pageSize}/>} />
+            <Route exact path='/search/:st' element={<News key='st' category='st' apiKey={apiKey}/>} />
           </Routes>
         </Router>
         

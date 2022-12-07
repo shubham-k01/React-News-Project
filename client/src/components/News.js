@@ -1,6 +1,7 @@
 import React, { useEffect ,useState } from 'react'
 import Newsitems from './Newsitems.js'
 import Spinner from './Spinner.js'
+import { useParams } from 'react-router-dom'
 import InfiniteScroll from  'react-infinite-scroll-component'
 import LoadingBar from 'react-top-loading-bar'
 
@@ -12,6 +13,8 @@ export default function News(props){
   const [loading, setLoading] = useState(false)
   const [totalResults, setTotalResults] = useState(0)
 
+  const {st} = useParams();
+
   useEffect(() => {
     updateNews()
     document.title= `PrimeNews - ${capitalizeFirst(props.category)}`
@@ -22,7 +25,22 @@ export default function News(props){
   }
 
   const updateNews = async()=>{
-    console.log('un: ', page)
+    console.log(st);
+    if(st){
+      const url = `https://newsapi.org/v2/everything?q=${st}&apiKey=${props.apiKey}`
+      // const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=d093053d72bc40248998159804e0e67d&category=${props.category}&pageSize=${props.pageSize}&page=${page}`
+      setLoading(true)
+      setProgress(20)
+      let data = await fetch(url)
+      setProgress(50)
+      let parsedData = await data.json()
+      setProgress(70)
+      setArticles(parsedData.articles)
+      setTotalResults(parsedData.totalResults)
+      setLoading(false)
+      setProgress(100)
+    }
+    else{
       const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${props.apiKey}&category=${props.category}&pageSize=${props.pageSize}&page=${page}`
       // const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=d093053d72bc40248998159804e0e67d&category=${props.category}&pageSize=${props.pageSize}&page=${page}`
       setLoading(true)
@@ -35,6 +53,7 @@ export default function News(props){
       setTotalResults(parsedData.totalResults)
       setLoading(false)
       setProgress(100)
+    }
   }
   
   const previousClick = async () => {
@@ -70,7 +89,7 @@ export default function News(props){
       <>
 
         <LoadingBar color="#f11946" height='3px' progress={progress} onLoaderFinished={() => setProgress(0)} />
-        <h1 style={{ margin: 'auto', marginLeft: '32vw' ,marginTop:'75px'}}>{`Top Headlines on ${capitalizeFirst(props.category)} `}</h1>
+        <h1 style={{ margin: 'auto', marginLeft: '32vw' ,marginTop:'75px'}}>{ st?`Top Headlines on ${capitalizeFirst(st)}`:'Top Headlines on ${capitalizeFirst(props.category)}'}</h1>
         <div className='container'>
           {loading && <Spinner />}
           <InfiniteScroll style={{overflow:'hidden'}}
