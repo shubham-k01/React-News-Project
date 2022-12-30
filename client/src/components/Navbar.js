@@ -1,6 +1,7 @@
 import React ,{useRef} from 'react'
 import {Link , useNavigate } from 'react-router-dom'
 import './Newsitems.js'
+import newsLogo from '../newsLogo.png'
 // import News from './News.js'
 // import Search from './Search.js'
 
@@ -15,8 +16,10 @@ export default function Navbar(){
     return(
         <>
         <nav className="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" style={{width:'100w'}}>
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="#">PrimeNews</Link>
+            <div className="container-fluid justify-content-center">
+                <Link className="navbar-brand " to="/">
+                    <img src={newsLogo} alt="" width='120px' height='45px'/>
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -47,7 +50,7 @@ export default function Navbar(){
                     </ul>
                     <form className="d-flex" role="search">
                         <input id="s1" className="form-control me-2" type="search" ref={first}  placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit" onClick={handleClick}>Search</button>
+                        <button className="btn btn-success" type="submit" onClick={handleClick}>Search</button>
                     </form>
                 </div>
             </div>

@@ -25,7 +25,6 @@ export default function News(props){
   }
 
   const updateNews = async()=>{
-    console.log(st);
     if(st){
       const url = `https://newsapi.org/v2/everything?q=${st}&apiKey=${props.apiKey}`
       // const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=d093053d72bc40248998159804e0e67d&category=${props.category}&pageSize=${props.pageSize}&page=${page}`
@@ -89,8 +88,8 @@ export default function News(props){
       <>
 
         <LoadingBar color="#f11946" height='3px' progress={progress} onLoaderFinished={() => setProgress(0)} />
-        <h1 style={{ margin: 'auto', marginLeft: '32vw' ,marginTop:'75px'}}>{ st?`Top Headlines on ${capitalizeFirst(st)}`:'Top Headlines on ${capitalizeFirst(props.category)}'}</h1>
-        <div className='container'>
+        <div className='container my-5'>
+        <h1 style={{ margin: 'auto', marginLeft: '32vw' ,marginTop:'75px'}}>{ st?`Top Headlines on ${capitalizeFirst(st)}`:`Top Headlines on ${capitalizeFirst(props.category)}`}</h1>
           {loading && <Spinner />}
           <InfiniteScroll style={{overflow:'hidden'}}
             dataLength={articles.length} //This is important field to render the next data
